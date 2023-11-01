@@ -36,6 +36,13 @@ $(function() {
         scrollbarStyle : "simple"
     });
 
+    term2 = CodeMirror(document.getElementById("term2"), {
+        lineWrapping   : true,
+        readOnly       : false,
+        theme          : "solarized",
+        scrollbarStyle : "simple"
+    });
+
     // Loading default file in the editor.
     var s = location.hash.substring(1) ;
     if (s === "") { s = "intro.affe"; };
@@ -48,14 +55,16 @@ $(function() {
         maxWidth : (document.body.clientWidth - 400)
     });
 
+
     $( "#edit" ).resizable({
         handles    : "s",
         minHeight  : 100,
         maxHeight  : (document.body.clientHeight - 120),
         resize     :
         function( event, ui ) {
-            $( "#term" ).css("height", "calc(100% - "+ui.size.height+"px - 3ex)");
+            $( "#terms" ).css("height", "calc(100% - "+ui.size.height+"px - 3ex)");
             term.refresh();
+            term2.refresh();
             edit.refresh();
         }
     });
@@ -81,6 +90,25 @@ function add_to_term(s) {
 function flush_term() {
     var doc = term.getDoc();
     term.scrollIntoView(doc.getCursor());
+}
+
+function clear_term2() {
+    term2.setValue('')
+}
+
+function add_to_term2(s) {
+    var doc = term2.getDoc();
+    var line = doc.lastLine();
+    var pos = {
+        line: line,
+        ch: doc.getLine(line).length
+        // set the character position to the end of the line
+    }
+    doc.replaceRange(s, pos); // adds a new line
+}
+function flush_term2() {
+    var doc = term2.getDoc();
+    term2.scrollIntoView(doc.getCursor());
 }
 
 // worker.onmessage =
