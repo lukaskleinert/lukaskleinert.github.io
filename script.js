@@ -1,3 +1,5 @@
+import * as EvalMod from "./evaluator.bc.js";
+import * as AffeMod from "./affe_www.bc.js";
 var filename = ""
 var edit = undefined;
 var term = undefined;
@@ -73,6 +75,8 @@ $(function() {
             edit.refresh();
         }
     });
+
+    console.log("Initialized jquery");
 });
 
 
@@ -117,10 +121,13 @@ function flush_term(i) {
 
 function run_ocaml() {
     var s = term2.getValue();
-    Affe.runocaml (s);
+    var res = EvalMod.evaluator.execute(s);
+    console.log(res);
+    add_to_term(3, res);
 }
 
-function eval() {
+function eval_affe() {
+    console.log("New Eval!");
     var s = edit.getValue();
-    Affe.eval (filename, s);
+    AffeMod.Affe.eval(filename, s);
 }
