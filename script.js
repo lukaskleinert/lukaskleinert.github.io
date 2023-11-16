@@ -1,5 +1,3 @@
-import * as EvalMod from "./evaluator.bc.js";
-import * as AffeMod from "./affe_www.bc.js";
 var filename = ""
 var edit = undefined;
 var term = undefined;
@@ -121,7 +119,7 @@ function flush_term(i) {
 
 function run_ocaml() {
     var s = term2.getValue();
-    var res = EvalMod.evaluator.execute(s);
+    var res = evaluator.execute(s);
     console.log(res);
     add_to_term(3, res);
 }
@@ -129,5 +127,5 @@ function run_ocaml() {
 function eval_affe() {
     console.log("New Eval!");
     var s = edit.getValue();
-    AffeMod.Affe.eval(filename, s);
+    Affe.eval(filename, s);
 }
