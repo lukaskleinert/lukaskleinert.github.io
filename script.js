@@ -130,8 +130,6 @@ function eval_affe() {
     Affe.eval(filename, s);
 }
 
-async function load_example(file) {
-    const text = await fetch(file);
-    console.log(text);
-    return text;
+function load_example(file) {
+    // ...
 }
