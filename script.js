@@ -132,5 +132,6 @@ function eval_affe() {
 
 const load_example = async (file) => {
     const text = await fetch(file);
+    console.log(text);
     return text;
 }
