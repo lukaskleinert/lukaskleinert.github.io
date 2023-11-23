@@ -131,5 +131,5 @@ function eval_affe() {
 }
 
 function load_example(file) {
-    // ...
+    return exampleFileCache[file];
 }
