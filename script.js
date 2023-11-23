@@ -130,6 +130,17 @@ function eval_affe() {
     Affe.eval(filename, s);
 }
 
+
+var exampleFileCache = { 'err': "(* Could not load file! *)" };
+
+async function cacheFile(filePath) {
+    fetch(filePath).then((contents) => {
+        exampleFileCache[filePath] = contents;
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
 function load_example(file) {
     if (exampleFileCache.hasOwnProperty(file)) {
         return exampleFileCache[file];
