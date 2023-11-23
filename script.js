@@ -131,5 +131,6 @@ function eval_affe() {
 }
 
 function load_example(file) {
-    return fetch(file);
+    console.log(fetch(file));
+    return "let iewjfew = 3";
 }
