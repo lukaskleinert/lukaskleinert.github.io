@@ -135,8 +135,10 @@ var exampleFileCache = { 'err': "(* Could not load file! *)" };
 
 async function cacheFile(filePath) {
     fetch(filePath).then((contents) => {
-        console.log(contents);
-        exampleFileCache[filePath] = contents;
+        contents.text().then((val) => {
+            console.log(val);
+            exampleFileCache[filePath] = val;
+        });
     }).catch((error) => {
         console.error(error);
     });
