@@ -131,5 +131,9 @@ function eval_affe() {
 }
 
 function load_example(file) {
-    return exampleFileCache[file];
+    if (exampleFileCache.hasOwnProperty(file)) {
+        return exampleFileCache[file];
+    } else {
+        return exampleFileCache.err;
+    }
 }
