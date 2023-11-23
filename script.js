@@ -130,9 +130,6 @@ function eval_affe() {
     Affe.eval(filename, s);
 }
 
-var example_text = "let x = 4"
-
 function load_example(file) {
-    const text = fetch(file);
-    return example_text;
+    return fetch(file);
 }
