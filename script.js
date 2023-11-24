@@ -160,6 +160,7 @@ async function cacheBuiltin(moduleName) {
 
 async function loadBuiltin(moduleName) {
     let filePath = builtinPath(moduleName);
+    console.log("Loaded", moduleName);
     if (builtinFileCache.hasOwnProperty(filePath)) {
         return builtinFileCache[filePath];
     } else {
