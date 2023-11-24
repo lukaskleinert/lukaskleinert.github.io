@@ -12,7 +12,7 @@ function loadfile(fn) {
         type: "GET",
         url: dir + fn,
         dataType: 'text',
-        success: function (data) { edit.setValue(data); }
+        success: function (data) { term0.setValue(data); }
     });
 }
 
