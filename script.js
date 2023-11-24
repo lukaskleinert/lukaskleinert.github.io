@@ -133,6 +133,8 @@ function eval_affe() {
 
 var exampleFileCache = { 'err': "(* Could not load file! *)" };
 
+var builtinFileCache = { 'err': "(* Could not load file! *)" };
+
 async function cacheFile(filePath) {
     fetch(filePath).then((contents) => {
         contents.text().then((val) => {
@@ -141,6 +143,28 @@ async function cacheFile(filePath) {
     }).catch((error) => {
         console.error(error);
     });
+}
+
+const builtinPath = s => `builtin/${s.charAt(0).toLowerCase()}${s.slice(1)}.ml`;
+
+async function cacheBuiltin(moduleName) {
+    let filePath = builtinPath(moduleName);
+    fetch(filePath).then((contents) => {
+        contents.text().then((val) => {
+            builtinFileCache[filePath] = `module ${moduleName} = struct\n${val}\nend\n`
+        });
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+async function loadBuiltin(moduleName) {
+    let filePath = builtinPath(moduleName);
+    if (builtinFileCache.hasOwnProperty(filePath)) {
+        return builtinFileCache[filePath];
+    } else {
+        return builtinFileCache.err;
+    }
 }
 
 function load_example(file) {
