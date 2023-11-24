@@ -136,7 +136,6 @@ var exampleFileCache = { 'err': "(* Could not load file! *)" };
 async function cacheFile(filePath) {
     fetch(filePath).then((contents) => {
         contents.text().then((val) => {
-            console.log(val);
             exampleFileCache[filePath] = val;
         });
     }).catch((error) => {
@@ -146,7 +145,6 @@ async function cacheFile(filePath) {
 
 function load_example(file) {
     if (exampleFileCache.hasOwnProperty(file)) {
-        console.log(exampleFileCache[file]);
         return exampleFileCache[file];
     } else {
         return exampleFileCache.err;
