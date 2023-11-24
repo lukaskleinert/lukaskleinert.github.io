@@ -16,11 +16,11 @@ function loadfile(fn) {
 
 function previewBuiltin(fn) {
     window.location.hash = fn;
-    dir = "builtin/";
     filename = fn;
+    fn = builtinPath(fn);
     $.ajax({
         type: "GET",
-        url: dir + fn,
+        url: fn,
         dataType: 'text',
         success: function (data) { term2.setValue(data); }
     });
